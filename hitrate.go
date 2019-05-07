@@ -21,7 +21,7 @@ type HitRate struct {
 
 func (hr HitRate) String() string {
 	return fmt.Sprintf("HitRate[%5.2f%% %v/%v]",
-		hr.HitRate(), hr.hit, hr.GetTotal())
+		hr.HitRate(), hr.hit, hr.hit+hr.miss)
 }
 
 func (hr *HitRate) Hit() {
@@ -35,5 +35,5 @@ func (hr HitRate) GetTotal() int {
 	return hr.hit + hr.miss
 }
 func (hr HitRate) HitRate() float64 {
-	return float64(hr.hit) * 100 / float64(hr.GetTotal())
+	return float64(hr.hit) * 100 / float64(hr.hit+hr.miss)
 }
